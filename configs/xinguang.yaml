@@ -1,0 +1,9 @@
+# YOLOv8 数据集配置文件（自动生成）
+train: D:/files_1/PythonProject/XinGuang/datasets/images/train
+val: D:/files_1/PythonProject/XinGuang/datasets/images/val
+
+nc: 3
+names:
+  0: defect_2
+  1: defect_3
+  2: defect_6

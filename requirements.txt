@@ -1,0 +1,19 @@
+# 鑫光板材瑕疵检测项目依赖清单
+# 自动扫描所有 Python 脚本中的 import 语句生成
+
+# 核心框架
+ultralytics>=8.0.0          # YOLOv8 目标检测框架
+
+# 推理加速
+openvino>=2026.1.0          # Intel OpenVINO 推理引擎
+
+# 图像处理
+opencv-python>=4.8.0        # OpenCV 图像处理库
+numpy>=1.24.0               # 数值计算库
+
+# 工具库
+tqdm>=4.66.0                # 进度条库
+PyYAML>=6.0                 # YAML 配置文件解析
+
+# 注意：以下为 Python 标准库，无需额外安装
+# os, json, random, shutil, pathlib, time, multiprocessing

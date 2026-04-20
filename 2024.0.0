@@ -1,0 +1,7 @@
+Collecting openvino
+  Using cached openvino-2026.1.0-21367-cp313-cp313-win_amd64.whl.metadata (12 kB)
+Requirement already satisfied: numpy<2.5.0,>=1.16.6 in D:\software_for_science_research\Anaconda3\Lib\site-packages (from openvino) (2.3.5)
+Collecting openvino-telemetry>=2023.2.1 (from openvino)
+  Using cached openvino_telemetry-2025.2.0-py3-none-any.whl.metadata (2.3 kB)
+Downloading openvino-2026.1.0-21367-cp313-cp313-win_amd64.whl (71.2 MB)
+   --------------------                     37.2/71.2 MB 972.2 kB/s eta 0:00:35
