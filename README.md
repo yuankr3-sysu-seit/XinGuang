@@ -74,14 +74,19 @@ XinGuang/
 │   ├── images/val/                       # 验证图片
 │   ├── labels/train/                     # 训练标注
 │   └── labels/val/                       # 验证标注
-├── runs/detect/                          # 训练结果与推理输出
+├── runs/detect/                          # 训练结果
 │   ├── baseline_train/                   # Exp-01: Baseline 训练结果
+│   │   └── weights/
+│   │       └── best_openvino_model/      # OpenVINO IR 模型 (best.xml + best.bin)
 │   ├── cbam_wiou_v1/                     # Exp-02: CBAM+WIoU 魔改结果
 │   └── baseline_aug_v12/                 # Exp-03: 数据增强调整结果
-├── baseline_best_openvino_model/         # Baseline OpenVINO 导出模型
+├── reports/                              # 验证指标报告
+│   └── ov_ir_evaluation_report.txt       # IR 模型验证指标
+├── baseline_best_openvino_model/         # 4月22日Baseline OpenVINO 导出模型
 │   ├── best.xml
 │   └── best.bin
 ├── backup/baseline_best.pt/              # Baseline 训练备份（含图表）
+├── convert_infer_evaluate.py             # 一键 IR 模型导出与验证
 ├── docs/                                 # 项目文档
 │   ├── SUM_0426.md                       # 完整项目总结报告
 │   └── PROJECT_SUMMARY.md                # 早期项目总结
@@ -163,6 +168,21 @@ XinGuang/
 | defect_2 | 点状小瑕疵 | **0.417** | ⚠️ 核心短板 |
 | defect_3 | 中型瑕疵 | **0.689** | ✅ 已接近可用 |
 | defect_6 | 大型/边缘瑕疵 | **0.653** | ✅ 已接近可用 |
+
+### IR 模型验证指标
+
+**数据来源**：`reports/ov_ir_evaluation_report.txt`
+
+| 指标 | 值 |
+|------|:---:|
+| mAP@0.5 | **0.5835** |
+| mAP@0.5:0.95 | 0.3044 |
+
+| 类别 | AP50 |
+|:---|:---:|
+| defect_2 | 0.4183 |
+| defect_3 | 0.6783 |
+| defect_6 | 0.6539 |
 
 ### OpenVINO 推理性能
 
@@ -252,6 +272,23 @@ python scripts/export_int8.py
 
 > **注意**：当前 `export_int8.py` 指向 `cbam_wiou_v1` 模型，如需量化 Baseline 模型请修改脚本中的 `model_path`。
 
+### 8. IR 模型导出与验证
+
+一键完成 PT 模型 → IR 模型导出，并对验证集进行推理验证：
+
+```bash
+python convert_infer_evaluate.py
+```
+
+执行后将自动完成：
+1. 将 `best.pt` 导出为 OpenVINO IR 格式（生成 `.xml` 与 `.bin` 文件）
+2. 使用 IR 模型在验证集上推理
+3. 输出并保存精度指标报告
+
+生成的文件：
+- IR 模型：`runs/detect/baseline_train/weights/best_openvino_model/best.xml` 与 `best.bin`
+- 指标报告：`reports/ov_ir_evaluation_report.txt`
+
 ---
 
 ## 下一步工作
@@ -273,7 +310,8 @@ python scripts/export_int8.py
 
 ### DK2500 部署验证
 
-- 将最优模型（Baseline 或 P2）导出为 OpenVINO 格式
+- IR 模型已就绪，路径为 `runs/detect/baseline_train/weights/best_openvino_model/`
+- 队友可直接使用 `best.xml` 和 `best.bin` 进行部署
 - 在 DK2500 上运行推理，确认 FPS ≥ 50
 - 验证 NPU 后端推理速度
 
