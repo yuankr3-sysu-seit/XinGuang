@@ -26,7 +26,7 @@ from ultralytics import YOLO
 # ============================================================
 
 # 项目根目录
-PROJECT_ROOT = r"D:\files_1\PythonProject\XinGuang"
+PROJECT_ROOT = r"D:/files_1/PythonProject/XinGuang"
 
 # 基线模型权重文件
 PT_WEIGHTS = os.path.join(PROJECT_ROOT, "runs", "detect", "baseline_train", "weights", "best.pt")
