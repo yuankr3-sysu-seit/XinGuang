@@ -46,8 +46,9 @@ XinGuang/
 │   ├── images/train, images/val          # YOLO 格式图片
 │   └── labels/train, labels/val          # YOLO 格式标注
 ├── runs/detect/                          # 训练结果 + 推理输出（不移动）
-├── docs/                                 # 项目文档与日志
+├── docs/                                 # 项目文档（报告、实验指南等）
 ├── requirements.txt                      # 依赖清单
+├── OPERATION_LOG.md                      # 操作日志（每次关键操作后更新）
 └── CLAUDE.md                             # 项目说明与 Claude Code 指令
 ```
 

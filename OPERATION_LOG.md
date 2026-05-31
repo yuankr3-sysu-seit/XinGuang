@@ -104,3 +104,22 @@
 | `outputs/`、`infer/`（空目录） | 已删除 |
 
 **整理后一级目录**：仅 6 个（`scripts/`、`configs/`、`models/`、`datasets/`、`runs/`、`docs/`）+ 根目录配置文件
+
+### 三模型对照实验脚本
+
+**操作人**：Claude Code
+
+**操作内容**：
+- 创建 `scripts/three_model_compare.py`，覆盖三模型（Official YOLOv8n / Baseline / CBAM+WIoU）对照评估
+- 评估指标共 7 项 + 速度：
+  1. mAP@0.5
+  2. mAP@0.5:0.95
+  3. Precision（整体）
+  4. Recall（整体）
+  5. F1 Score
+  6. 每类 AP50（defect_2 / defect_3 / defect_6）
+  7. FPPI（负样本误报率）
+  + OpenVINO 平均推理耗时 / FPS
+- 输出：控制台表格 + `runs/detect/three_model_compare/comparison_report.txt`
+
+**指令来源**：彭日骏 → 袁康睿（2026-05-31）
