@@ -28,13 +28,13 @@ VAL_IMG_DIR = os.path.join(PROJECT_ROOT, "datasets", "images", "val")
 MODEL_CONFIGS = [
     {
         "name": "Official_YOLOv8n",
-        "pt_path": os.path.join(PROJECT_ROOT, "yolov8n.pt"),
-        "ov_dir": os.path.join(PROJECT_ROOT, "yolov8n_openvino_model_official")
+        "pt_path": os.path.join(PROJECT_ROOT, "models", "weights", "yolov8n.pt"),
+        "ov_dir": os.path.join(PROJECT_ROOT, "models", "yolov8n_openvino_model_official")
     },
     {
         "name": "Baseline_best",
         "pt_path": os.path.join(PROJECT_ROOT, "runs", "detect", "baseline_train", "weights", "best.pt"),
-        "ov_dir": os.path.join(PROJECT_ROOT, "baseline_best_openvino_model")
+        "ov_dir": os.path.join(PROJECT_ROOT, "models", "baseline_best_openvino_model")
     }
 ]
 

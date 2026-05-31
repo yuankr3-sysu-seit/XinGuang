@@ -32,7 +32,7 @@ PROJECT_ROOT = r"D:/files_1/PythonProject/XinGuang"
 PT_WEIGHTS = os.path.join(PROJECT_ROOT, "runs", "detect", "baseline_train", "weights", "best.pt")
 
 # OpenVINO 导出后的模型目录（Ultralytics 默认命名：<stem>_openvino_model）
-OV_MODEL_DIR = os.path.join(PROJECT_ROOT, "baseline_best_openvino_model")
+OV_MODEL_DIR = os.path.join(PROJECT_ROOT, "models", "baseline_best_openvino_model")
 
 # 验证集图片目录
 VAL_IMG_DIR = os.path.join(PROJECT_ROOT, "datasets", "images", "val")
@@ -115,7 +115,7 @@ def export_openvino_if_needed(pt_path: str, ov_dir: str) -> str:
     if not os.path.isfile(pt_path):
         raise FileNotFoundError(
             f"未找到基线权重文件：{pt_path}\n"
-            f"请先将 yolov8n.pt 放置到项目根目录，或从 Ultralytics 官方仓库下载。"
+            f"请先将 yolov8n.pt 放置到 models/weights/ 目录，或从 Ultralytics 官方仓库下载。"
         )
 
     print(f"[INFO] 开始将 {os.path.basename(pt_path)} 导出为 OpenVINO 格式 ...")

@@ -19,13 +19,13 @@ import cv2
 
 PROJECT_ROOT = r"D:\files_1\PythonProject\XinGuang"
 VAL_IMG_DIR = os.path.join(PROJECT_ROOT, "datasets", "images", "val")
-DATA_YAML = os.path.join(PROJECT_ROOT, "xinguang.yaml")
+DATA_YAML = os.path.join(PROJECT_ROOT, "configs", "xinguang.yaml")
 
 # 模型配置列表
 MODEL_CONFIGS = [
     {
         "name": "Official_YOLOv8n",
-        "pt_path": os.path.join(PROJECT_ROOT, "yolov8n.pt"),
+        "pt_path": os.path.join(PROJECT_ROOT, "models", "weights", "yolov8n.pt"),
     },
     {
         "name": "Baseline_best",

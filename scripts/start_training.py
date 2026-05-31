@@ -5,7 +5,7 @@ if __name__ == '__main__':
     multiprocessing.freeze_support()
     
     print("[INFO] 正在加载 YOLOv8n-P2 纯净版模型...")
-    model = YOLO('configs/yolov8n-p2.yaml').load('yolov8n.pt')  # 加载官方预训练权重
+    model = YOLO('configs/yolov8n-p2.yaml').load('models/weights/yolov8n.pt')  # 加载官方预训练权重
     
     print("[INFO] 🚀 训练即将开始！请确保电脑已插电，散热良好，且未设置自动休眠。")
     print("[INFO] 进度条将在数据加载完成后出现，请耐心等待 1-2 分钟...")

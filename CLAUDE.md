@@ -18,32 +18,37 @@
 
 ```
 XinGuang/
-├── scripts/                          # 可执行 Python 脚本
-│   ├── prepare_dataset.py            # LabelMe JSON → YOLO 格式转换 + 滑窗裁剪
-│   ├── start_training.py             # 模型训练启动（Baseline / 魔改）
-│   ├── train_v2.py                   # 魔改模型第二轮训练（CBAM+WIoU, 100 epochs）
-│   ├── resume_training.py            # 恢复中断的训练
-│   ├── val_baseline.py               # 精度验证（mAP, P, R）
-│   ├── infer_openvino.py             # OpenVINO 推理与性能基准测试
-│   ├── infer_openvino_compare.py     # 双模型 OpenVINO 推理对比
-│   ├── full_compare_openvino.py      # 官方 vs 自训练全面对比（精度+速度）
-│   └── export_int8.py                # INT8 量化导出
+├── scripts/                              # 所有可执行 Python 脚本
+│   ├── prepare_dataset.py                # LabelMe JSON → YOLO 格式转换 + 滑窗裁剪
+│   ├── start_training.py                 # 模型训练启动（Baseline / 魔改）
+│   ├── train_v2.py                       # 魔改模型第二轮训练（CBAM+WIoU, 100 epochs）
+│   ├── resume_training.py                # 恢复中断的训练
+│   ├── val_baseline.py                   # 精度验证（mAP, P, R）
+│   ├── val_detailed.py                   # 详细精度分析
+│   ├── infer_openvino.py                 # OpenVINO 推理与性能基准测试
+│   ├── infer_openvino_compare.py         # 双模型 OpenVINO 推理对比
+│   ├── full_compare.py                   # 初始对比脚本（实验用）
+│   ├── full_compare_openvino.py          # 官方 vs 自训练全面对比（精度+速度）
+│   ├── convert_infer_evaluate.py         # 转换+推理+评估一体化脚本
+│   └── export_int8.py                    # INT8 量化导出
 ├── configs/
-│   ├── xinguang.yaml                 # 数据集配置（3类, 路径）
-│   └── yolov8n_cbam_wiou.yaml        # CBAM + WIoU 魔改模型配置
+│   ├── xinguang.yaml                     # 数据集配置（3类, 路径）
+│   ├── yolov8n_cbam_wiou.yaml            # CBAM + WIoU 魔改模型配置
+│   └── yolov8n-p2.yaml                   # YOLOv8n-P2 模型配置
+├── models/                               # 模型权重与导出产物
+│   ├── weights/
+│   │   └── yolov8n.pt                    # 官方预训练权重
+│   ├── baseline_best_openvino_model/     # Baseline OpenVINO 导出模型
+│   ├── yolov8n_openvino_model_official/  # 官方 YOLOv8n OpenVINO 模型
+│   └── backup/
+│       └── baseline_best.pt/             # Baseline 训练备份（含图表）
 ├── datasets/
-│   ├── images/train, images/val      # YOLO 格式图片
-│   └── labels/train, labels/val      # YOLO 格式标注
-├── runs/detect/                      # 训练结果 + 推理输出（不移动）
-├── backup/baseline_best.pt/          # Baseline 训练备份（含图表）
-├── baseline_best_openvino_model/     # Baseline OpenVINO 导出模型
-├── yolov8n_openvino_model_official/  # 官方 YOLOv8n OpenVINO 模型
-├── docs/                             # 项目文档
-├── requirements.txt                  # 依赖清单
-├── export_and_infer.py               # 快速导出+推理脚本（实验用）
-├── full_compare.py                   # 初始对比脚本（实验用）
-├── infer_openvino_compare.py         # 初始对比脚本（实验用）
-└── yolov8n.pt                        # 官方预训练权重
+│   ├── images/train, images/val          # YOLO 格式图片
+│   └── labels/train, labels/val          # YOLO 格式标注
+├── runs/detect/                          # 训练结果 + 推理输出（不移动）
+├── docs/                                 # 项目文档与日志
+├── requirements.txt                      # 依赖清单
+└── CLAUDE.md                             # 项目说明与 Claude Code 指令
 ```
 
 ## 关键脚本说明

@@ -70,3 +70,37 @@
 | 负样本 FPPI | 0.0729 | PASS，误报率达标 |
 
 **结论修正**：defect_2 的主要问题不是"小目标漏检"，而是"中大目标漏检"（Recall 0.3785），原因可能是对比度低、背景干扰。
+
+---
+
+## 2026-05-31
+
+### 项目目录整理
+
+**操作人**：Claude Code
+
+**操作内容**：
+- 将根目录散落的 3 个实验脚本移入 `scripts/`：`convert_infer_evaluate.py`、`full_compare.py`、`infer_openvino_compare.py`
+- 新建 `models/` 目录，统一归集模型相关文件：
+  - `models/weights/yolov8n.pt`（官方预训练权重）
+  - `models/baseline_best_openvino_model/`（Baseline OpenVINO 模型）
+  - `models/yolov8n_openvino_model_official/`（官方 OpenVINO 模型）
+  - `models/backup/baseline_best.pt/`（Baseline 训练备份含图表）
+- 将 `reports/ov_ir_evaluation_report.txt` 和 `kernel.errors.txt` 移入 `docs/`
+- 删除空目录：`outputs/`、`infer/`
+- 更新所有脚本中的路径引用（6 个文件共 9 处路径修改）
+- 更新 `CLAUDE.md` 项目结构描述
+
+**整理前后对比**：
+
+| 整理前（根目录） | 整理后 |
+|:---|:---|
+| 3 个散落 .py 脚本 | 全部移入 `scripts/` |
+| `yolov8n.pt` 在根目录 | → `models/weights/` |
+| `baseline_best_openvino_model/` | → `models/` |
+| `yolov8n_openvino_model_official/` | → `models/` |
+| `backup/` | → `models/backup/` |
+| `reports/`、`kernel.errors.txt` | → `docs/` |
+| `outputs/`、`infer/`（空目录） | 已删除 |
+
+**整理后一级目录**：仅 6 个（`scripts/`、`configs/`、`models/`、`datasets/`、`runs/`、`docs/`）+ 根目录配置文件
